@@ -12,7 +12,7 @@ export async function onRequest(context) {
       <html>
         <head><title>Site can't be reached</title></head>
         <body>
-          <h1>This site can’t be reached</h1>
+          <h1>This site can't be reached</h1>
           <p>The webpage at <code>${request.url}</code> might be temporarily down or it may have moved permanently to a new web address.</p>
           <p>ERR_TUNNEL_CONNECTION_FAILED</p>
         </body>
