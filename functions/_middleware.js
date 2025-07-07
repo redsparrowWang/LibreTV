@@ -7,7 +7,23 @@ export async function onRequest(context) {
   const country = request.headers.get("cf-ipcountry");
   if (country !== "JP") {
     // return new Response("Access denied: region blocked", { status: 403 });
-     return new Response("Not found", { status: 404 });
+    // return new Response("Not found", { status: 404 });
+    return new Response(`
+      <html>
+        <head><title>Site can't be reached</title></head>
+        <body>
+          <h1>This site can’t be reached</h1>
+          <p>The webpage at <code>${request.url}</code> might be temporarily down or it may have moved permanently to a new web address.</p>
+          <p>ERR_TUNNEL_CONNECTION_FAILED</p>
+        </body>
+      </html>
+      `, {
+          status: 404,
+          headers: {
+            "content-type": "text/html"
+          }
+      }
+    );
   }
   
   const response = await next();
