@@ -6,7 +6,8 @@ export async function onRequest(context) {
   // 地區限制：只允許來自日本（JP）訪問
   const country = request.headers.get("cf-ipcountry");
   if (country !== "JP") {
-    return new Response("Access denied: region blocked", { status: 403 });
+    // return new Response("Access denied: region blocked", { status: 403 });
+     return new Response("Not found", { status: 404 });
   }
   
   const response = await next();
