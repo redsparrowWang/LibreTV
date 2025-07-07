@@ -2,6 +2,13 @@ import { sha256 } from '../js/sha256.js';
 
 export async function onRequest(context) {
   const { request, env, next } = context;
+
+  // 地區限制：只允許來自日本（JP）訪問
+  const country = request.headers.get("cf-ipcountry");
+  if (country !== "JP") {
+    return new Response("Access denied: region blocked", { status: 403 });
+  }
+  
   const response = await next();
   const contentType = response.headers.get("content-type") || "";
   
